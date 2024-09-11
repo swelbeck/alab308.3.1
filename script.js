@@ -61,31 +61,96 @@
 // You do not need to format the data, the following works well.
 // console.log(cell1, cell2, cell3, cell4);
 
-csv = `ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz
-Master,58\n98,Bill,Doctor’s Assistant,26`;
+csv = `ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor’s Assistant,26`;
 
 // What do I need?
 //Empty string variable
+//Empty array
 
 let cell = ``;
-counter = 0;
-const row = [];
+let row = [];
 
-for (let i = 0; i < 4; i++) {
-  row[i] = "some stuff";
-  console.log(row);
-}
 
-// for (let )
+str = `ID,Name,Occupation,Age\n42,Bruce,Knight,41`;
+let commaCounter = 0;
+let escapeCounter = 0;
 
-for (let c of csv) {
-  if (c !== `,`) {
-    cell += c;
-    continue;
-  } else {
+for (let char of csv) {
+  if (char !== `,` && char !== `\n`) {
+    cell += char;
+    // continue;
+  }
+  else if (char == `,`) {
+    row[commaCounter] = cell;
+    // let cell = cell;
+    commaCounter++;
+    cell = ``;
     continue;
   }
+  else if (char == `\n`) {
+    row[commaCounter] = cell;
+    console.log(commaCounter, row);
+    escapeCounter++
+    row = [];
+    commaCounter = 0;
+    cell = ``
+    continue;
+  }
+  // console.log(commaCounter, row, escapeCounter);
 }
+row[commaCounter] = cell;
+console.log(commaCounter, row);
+// console.log(commaCounter, row, escapeCounter);
+
+// const obj = {};
+// const dynamicName = "abcd";
+// obj[dynamicName] = 5;
+// console.log(obj)
+
+// var markers = [];
+// for (var i = 0; i < 4; ++i) {
+//   markers[i] = "some stuff";
+// }
+// console.log(markers)
+
+// for (let j of str) {
+//   cell += j;
+//   // console.log(`cell:`, cell)
+//   // if (j==`,`){
+//   //   for (let i =0; i < 4; i++){
+//   //     cell[i]=j
+//   //     console.log(`i:`, i)
+//   //     console.log(`j:`, j);
+//   //     console.log(`Cell:`, cell);
+//   //   }
+//   // }
+//   // console.log(`cell`, cell);
+// }
+
+// for (let i = 0; i < 4; i++) {
+//   row[i] += 'i';
+//   console.log(i, row);
+// }
+
+// let test = ``
+// for (let i = 0; i < 4; i++) {
+//   for(let j of str){
+//     if (j == `,`){
+//       test[i] = j
+//     }
+//     else if (j !== `\n`){
+//       test+=j
+//     }
+//   }
+//   // test += "Hello";
+//   // row[i] = test;
+//   console.log(test, row);
+// }
+
+// for (let counter = 0; counter < 4; counter++) {
+//   row[counter] = cell;
+//   console.log(counter, row);
+// }
 
 // for (let c of csv) {
 //   if (c !== `,`) {
